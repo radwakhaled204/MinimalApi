@@ -44,6 +44,8 @@ app.MapPut("/products/{id}", async (int id ,Product input, AppDbContext db) =>
     await db.SaveChangesAsync();
     return Results.Created($"{product.Id}", product);
 });
+
+//add delete
 app.MapDelete("/products/{id}", async (int id, AppDbContext db) =>
 {
     var product = await db.products.FindAsync(id);
