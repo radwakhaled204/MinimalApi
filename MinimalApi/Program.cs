@@ -33,6 +33,7 @@ app.MapGet("/products/{id}", async (int id, AppDbContext db) =>
     await db.products.FindAsync(id)
     is Product product ? Results.Ok(product) : Results.NotFound());
 
+//add put 
 app.MapPut("/products/{id}", async (int id ,Product input, AppDbContext db) =>
 {
     var product = await db.products.FindAsync(id);
