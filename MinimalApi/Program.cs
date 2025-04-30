@@ -30,8 +30,17 @@ app.MapGet("/products", async (AppDbContext db) => await db.products.ToListAsync
 
 //add get by id
 app.MapGet("/products/{id}", async (int id, AppDbContext db) =>
-
     await db.products.FindAsync(id)
     is Product product ? Results.Ok(product) : Results.NotFound());
 
+app.MapPut("/products/{id}", async (int id ,Product input, AppDbContext db) =>
+{
+    var product = await db.products.FindAsync(id);
+    if (product is null) return Results.NotFound();
+
+    product.Name = input.Name;
+    product.Price = input.Price;
+    await db.SaveChangesAsync();
+    return Results.Created($"{product.Id}", product);
+});
 app.Run();
