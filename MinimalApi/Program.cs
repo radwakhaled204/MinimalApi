@@ -22,10 +22,9 @@ app.MapPost("/products", async (Product product, AppDbContext db) =>
     await db.products.AddAsync(product);
     await db.SaveChangesAsync();
     return Results.Created($"{product.Id}", product);
-
 });
 
-//app.MapGet("/products", async (AppDbContext db) => await db.products.ToListAsync());
-
+app.MapGet("/products", async (AppDbContext db) => await db.products.ToListAsync());
+ 
 
 app.Run();
