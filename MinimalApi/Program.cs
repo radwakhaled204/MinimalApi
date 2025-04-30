@@ -28,7 +28,7 @@ app.MapPost("/products", async (Product product, AppDbContext db) =>
 app.MapGet("/products", async (AppDbContext db) => await db.products.ToListAsync());
 
 
-
+//add get by id
 app.MapGet("/products/{id}", async (int id, AppDbContext db) =>
 
     await db.products.FindAsync(id)
