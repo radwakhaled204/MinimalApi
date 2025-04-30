@@ -24,7 +24,7 @@ app.MapPost("/products", async (Product product, AppDbContext db) =>
     return Results.Created($"{product.Id}", product);
 });
 
-
+//add get all
 app.MapGet("/products", async (AppDbContext db) => await db.products.ToListAsync());
 
 
